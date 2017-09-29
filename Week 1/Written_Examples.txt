@@ -1,0 +1,10 @@
+4. Assuming Age = 10 
+    Name = sam
+    age = 10
+    months = 120
+
+5.
+    message = 3
+
+6. 
+    mystery = 9
