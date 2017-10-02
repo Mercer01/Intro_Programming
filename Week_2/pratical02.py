@@ -46,4 +46,3 @@ def selectCoins(total_coins):
         #if total_amount != 0:
         print("There are " + str(total_amount) + " of " + str(current_coin) + " Pence coins")
         total_coins -= total_amount*current_coin
-
