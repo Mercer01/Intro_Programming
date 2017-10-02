@@ -9,10 +9,9 @@ def count():
         print(i)
 
 def kilos2pounds():
-    kilos = eval(input("Enter a weight in kilograms: "))
+    kilos = int(input("Enter a weight in kilograms: "))
     pounds = 2.2 * kilos
     print("The weight in pounds is", pounds)
-
 
 def kilos2poundsnoinputt(kilos):
     return 2.2 * kilos
