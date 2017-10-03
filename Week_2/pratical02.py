@@ -1,4 +1,5 @@
-pi = 3.1415962
+import math
+pi = math.pi
 
 def circumferenceOfCircle():
     var = int(input("enter:"))
@@ -43,6 +44,5 @@ def averageOfNumbers():
 def selectCoins(total_coins):
     for current_coin in [200,100,50,20,10,5,2,1]:
         total_amount = int(total_coins/current_coin)
-        #if total_amount != 0:
         print("There are " + str(total_amount) + " of " + str(current_coin) + " Pence coins")
         total_coins -= total_amount*current_coin
