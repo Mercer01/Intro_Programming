@@ -9,12 +9,9 @@ def areaofCircle():
     var = int(input("enter:"))
     print(pi**(var**2))
 
-def areaofCircleDiameter(diameter):
-    return ((diameter/2)**2)*pi
-
 def costOfPizza():
     var = int(input("Enter Diameter:"))
-    print(areaofCircleDiameter(var) * 1.5)
+    print(((var/2)**2)*pi * 1.5)
 
 def slopeOfLine(x1,x2,y1,y2):
      return (y2-y1)/(x2-x1)
@@ -32,7 +29,6 @@ def sumOfNumbers():
     for x in range(count):
         total = total + (int(input("Enter Number " + str(x +1) + ":")))
     print(total)
-
 
 def averageOfNumbers():
     count = int(input("Enter number of values:"))
