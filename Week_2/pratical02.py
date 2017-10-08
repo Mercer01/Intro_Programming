@@ -42,3 +42,5 @@ def selectCoins(total_coins):
         total_amount = int(total_coins/current_coin)
         print("There are " + str(total_amount) + " of " + str(current_coin) + " coins")
         total_coins -= total_amount*current_coin
+    
+selectCoins(8023) 
