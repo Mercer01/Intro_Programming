@@ -2,6 +2,7 @@
 # your name, your number
 
 from graphics import *
+import random
 
 def drawStickFigure():
     win = GraphWin("Stick figure")
@@ -85,3 +86,35 @@ def tenColouredRectangles():
         rect.setFill(inputBox.getText())
 
 def fiveClickStickFigure():
+    win = GraphWin("fiveClickStickFigure",300,400)
+    p1 = win.getMouse()
+    p2 = win.getMouse()
+    print(p1,p2)
+    #radius = (((p2.getX() - p1.getX())**2) + (p2.getY() - p2.getY())**2)**0.5
+    radius = (((p2.getX() * p1.getX())) + (p2.getY() * p2.getY()))
+
+    print(radius)
+    head = Circle(p1, radius).draw(win)
+    p3 = win.getMouse()
+    body = Line(Point(p1.getX() ,p1.getY() + radius),p3).draw(win)
+    p4 = win.getMouse()
+    distance2 = p4.getX() - p3.getX()
+    arms = Line(Point(p4.getX(),p4.getY()),Point(p4.getX()-(distance2*2),p4.getY())).draw(win)
+    p5  = win.getMouse()
+    leg1 = Line(p5,p3).draw(win)
+    distance3 = p5.getX() - p3.getX()
+    leg2 = Line(Point(p5.getX() - distance3 *2,p5.getY()),p3).draw(win)
+
+    win.getMouse()
+
+def plotRainfall():
+    win = GraphWin("tenStrings",400,300)
+    inputBox = Entry(Point(50, 30), 10)
+    inputBox.draw(win)
+    for x in range(7):
+        win.getMouse()
+        size = int(inputBox.getText())
+        rect = Rectangle(Point(x*20+20,300-size),Point(x*20,300)).draw(win)
+        rect.setFill(random.choice(["black","red","green","blue","gold","yellow"]))
+    win.getMouse()
+plotRainfall()
