@@ -39,9 +39,9 @@ def averageOfNumbers():
         total = total + (int(input("Enter Number " + str(x+1) + ":")))
     print(total/count)
 
-def selectCoins(total_coins):
+def selectCoins():
     total_coins = int(input("Please input the total amount of code:"))
-    for current_coin in [200,100,50,20,10,5,2,1]:
+    for current_coin in [200, 10, 50, 20, 10, 5, 2, 1]:
         total_amount = int(total_coins/current_coin)
         print("There are " + str(total_amount) + " of " + str(current_coin) + " coins")
         total_coins -= total_amount*current_coin
