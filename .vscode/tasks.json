@@ -2,39 +2,32 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
-    "tasks": [
-        {
-            "taskName": "echo",
-            "type": "shell",
-            "command": "echo Hello"
+    "tasks": [{
+        "taskName": "Run Python",
+        "group": {
+            "kind": "build",
+            "isDefault": true
         },
-        {
-            "taskName": "Run File",
-            "command": "python ${file}",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "focus": true
-            }
+        "command": "${config:python.pythonPath}",
+        "type": "shell",
+        "args": [
+            "${file}"
+        ],
+        "presentation": {
+            "reveal": "always",
+            "panel": "new"
         },
-        {
-            "taskName": "nosetest",
-            "command": "nosetests -v",
-            "type": "shell",
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "focus": true
-            }
+        "problemMatcher": {
+            "fileLocation": "absolute",
+            "pattern": [{
+                "regexp": "^\\s+File \"(.*?)\", line ([0-9]+)[,]?.+?$",
+                "line": 2,
+                "file": 1,
+                "message": 0
+            }, {
+                "regexp": "^\\s+(.+?)$",
+                "code": 1
+            }]
         }
-    ]
+    }]
 }

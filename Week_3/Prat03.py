@@ -3,6 +3,7 @@
 
 from graphics import *
 import random
+import pip34
 
 def drawStickFigure():
     win = GraphWin("Stick figure")
@@ -47,18 +48,17 @@ def drawArcheryTarget():
 
 
 def drawRectangle():
-    win = GraphWin("drawRectangle",200,200)
+    win = GraphWin("drawRectangle", 200, 200)
     height = int(input("Please input Height:"))
     width = int(input("Please Input Width: "))
-    rect =  Rectangle(Point(100-height/2,100-width/2), Point(100+height/2,100+width/2)).draw(win)
+    rect = Rectangle(Point(100-height/2, 100-width/2), Point(100+height/2, 100+width/2)).draw(win)
     rect.setFill("black")
-    
     win.getMouse()
 
 def blueCircle():
     win = GraphWin("blueCircle")
     p = win.getMouse()
-    circle = Circle(Point(p.getX(),p.getY()),50).draw(win)
+    circle = Circle(Point(p.getX(), p.getY()), 50).draw(win)
     circle.setFill("blue")
 
     win.getMouse()
@@ -68,38 +68,35 @@ def tenLines():
         drawLine()
 
 def tenStrings():
-    win = GraphWin("tenStrings",400,300)
+    win = GraphWin("tenStrings", 400, 300)
     for x in range(10):
         inputBox = Entry(Point(50, 30), 10)
         inputBox.draw(win)
-        p =win.getMouse()
+        p = win.getMouse()
         message = Text(Point(p.getX(), p.getY()), inputBox.getText()).draw(win)
 
 def tenColouredRectangles():
-    win = GraphWin("tenColouredRectangles",400,300)
+    win = GraphWin("tenColouredRectangles", 400, 300)
     for x in range(10):
         inputBox = Entry(Point(50, 30), 10)
         inputBox.draw(win)
         pos1 = win.getMouse()
         pos2 = win.getMouse()
-        rect = Rectangle(Point(pos1.getX(),pos1.getY()),Point(pos2.getX(),pos2.getY())).draw(win)
+        rect = Rectangle(Point(pos1.getX(), pos1.getY()),Point(pos2.getX(), pos2.getY())).draw(win)
         rect.setFill(inputBox.getText())
 
 def fiveClickStickFigure():
-    win = GraphWin("fiveClickStickFigure",300,400)
+    win = GraphWin("fiveClickStickFigure", 300, 400)
     p1 = win.getMouse()
     p2 = win.getMouse()
-    print(p1,p2)
-    #radius = (((p2.getX() - p1.getX())**2) + (p2.getY() - p2.getY())**2)**0.5
-    radius = (((p2.getX() * p1.getX())) + (p2.getY() * p2.getY()))
-
-    print(radius)
+    radius = (((p2.getX() - p1.getX())**2) + (p2.getY() - p2.getY())**2)**0.5
+    #radius = (((p2.getX() * p1.getX())) + (p2.getY() * p2.getY()))
     head = Circle(p1, radius).draw(win)
     p3 = win.getMouse()
     body = Line(Point(p1.getX() ,p1.getY() + radius),p3).draw(win)
     p4 = win.getMouse()
     distance2 = p4.getX() - p3.getX()
-    arms = Line(Point(p4.getX(),p4.getY()),Point(p4.getX()-(distance2*2),p4.getY())).draw(win)
+    arms = Line(Point(p4.getX(), p4.getY()), Point(p4.getX()-(distance2*2), p4.getY())).draw(win)
     p5  = win.getMouse()
     leg1 = Line(p5,p3).draw(win)
     distance3 = p5.getX() - p3.getX()
@@ -117,4 +114,4 @@ def plotRainfall():
         rect = Rectangle(Point(x*20+20,300-size),Point(x*20,300)).draw(win)
         rect.setFill(random.choice(["black","red","green","blue","gold","yellow"]))
     win.getMouse()
-plotRainfall()
+fiveClickStickFigure()
