@@ -3,7 +3,6 @@
 
 from graphics import *
 import random
-import pip34
 
 def drawStickFigure():
     win = GraphWin("Stick figure")
@@ -114,4 +113,4 @@ def plotRainfall():
         rect = Rectangle(Point(x*20+20,300-size),Point(x*20,300)).draw(win)
         rect.setFill(random.choice(["black","red","green","blue","gold","yellow"]))
     win.getMouse()
-fiveClickStickFigure()
+plotRainfall()

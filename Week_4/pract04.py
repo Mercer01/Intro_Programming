@@ -65,14 +65,14 @@ def fileInCaps():
     file = open("d:\Workspace\Intro_Programming\Week_4\text.txt")
     for line in file:
         print(line.upper())
+    file.close()
 
 def rainfallChart():
-    file = open('d:\\Workspace\\Intro_Programming\\Week_4\\rainfall.txt')
-    for line in file:
+    with open('Week_4\\rainfall.txt') as file:
         print(line.split()[0],"*"*int(line.split()[1]))
 
 def graphicalRainfallChart():
-    file = open('d:\\Workspace\\Intro_Programming\\Week_4\\rainfall.txt')
+    file = open('Week_4\\rainfall.txt')
     win = GraphWin("graphicalRainfallChart",400,300)
     for x,line in enumerate(file):
         size = int(line.split()[1])
@@ -81,6 +81,26 @@ def graphicalRainfallChart():
         text.setSize(5)
         rect.setFill(random.choice(["black","red","green","blue","gold","yellow"]))
     win.getMouse()
-
+    file.close()
 
 def rainfallInInches():
+    newfile = open("Week_4\\rainfall_inches.txt","w+")
+    with open('Week_4\\rainfall.txt') as file:
+        for line in file:
+            size_inches = int(line.split()[1]) /25.4
+            newfile.write("{0} {1:.2f} \n".format(line.split()[0],size_inches))
+    
+    newfile.close()
+
+def wc():
+    line_count = 0 
+    word_count = 0
+    char_count = 0
+    file_path = input("Please input the path to the file:") #'Week_4\\quotation.txt'
+    with open(file_path) as file:
+        for line in file:
+            line_count +=1
+            char_count += len(line)
+            word_count += len(line.split())
+    
+    print("The linecount it {0}, the word count is {1}, and the character count is {2}".format(line_count,word_count,char_count))

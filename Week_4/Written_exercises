@@ -1,0 +1,26 @@
+1. food[1]
+    h
+2. food[index]
+    e
+3. food[-1]
+    e
+4. len(food)
+    6
+5. food[2:4]
+    'ee'
+6. food[:-2]
+    'chee'
+7. food[index:-1]
+    'es'
+8. food + "cake"
+    'cheesecake'
+9. food[:2] + food[2:4] * 3 + food[-2:]
+    'cheeeeeese'
+10. food.replace("ee", "oo")
+    'choose'
+11. food.replace("e", "oo")
+    'chooooso'
+12. food.upper()
+    'CHEESE'
+13. food + "pizza".title()
+    'cheesePizza'
