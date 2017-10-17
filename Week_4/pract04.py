@@ -83,7 +83,8 @@ def fileInCaps():
 
 def rainfallChart():
     with open('Week_4\\rainfall.txt') as file:
-        print(line.split()[0], "*" * int(line.split()[1]))
+        for line in file:
+            print(line.split()[0], "*" * int(line.split()[1]))
 
 
 def graphicalRainfallChart():
