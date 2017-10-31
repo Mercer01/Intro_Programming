@@ -6,6 +6,7 @@
 
 from graphics import *
 import math
+import random
 
 # For exercises 8 & 11
 
@@ -17,6 +18,10 @@ def drawCircle(win, centre, radius, colour):
     circle.draw(win)
 
 # For exercise 8
+
+
+def distanceBetweenPoints(p1, p2):
+    return (math.sqrt((p2.getX() - p1.getX())**2 + (p2.getY() - p1.getY())**2))
 
 
 def drawColouredEye(window, center, radius_eye, colour):
@@ -101,9 +106,11 @@ def drawPatchWindow():
     n = 10
     for y in range(100, 0, -10):
         for x in range(n, 0, -1):
-            square = Rectangle(Point(100 - x, y), Point(100 - x * 10, y - 10)
-                               ).draw(win).setFill("Red")
-            # square.setOutline("Red")
+            square = Rectangle(Point(100 - x, y), Point(100 - x * 10, y - 10))
+            square.setFill("Red")
+            square.setOutline("Red")
+            square.draw(win)
+
         n -= 1
         if n == -1:
             break
@@ -116,9 +123,11 @@ def drawPatch(win, pos_x, pos_y, colour):
     pos_x += 100
     for y in range(pos_y + 100, pos_y, -10):
         for x in range(n, 0, -1):
-            square = Rectangle(Point(pos_x - x, y), Point(pos_x - x * 10, y - 10)
-                               ).draw(win).setFill(colour)
-            # square.setOutline("Red")
+            square = Rectangle(Point(pos_x - x, y),
+                               Point(pos_x - x * 10, y - 10))
+            square.setFill("Red")
+            square.setOutline("Red")
+            square.draw(win)
         n -= 1
         if n == -1:
             break
@@ -136,11 +145,44 @@ def drawPatchWork():
 
 def eyesAllAround():
     win = GraphWin("Eyes all around", 500, 500)
-    for x in range(0, 15, 2):
-        for colours in ["blue", "grey", "green", "brown"]:
-            drawColouredEye(win, win.getMouse(), 30, colours)
+    colour_int = 0
+    colours = ["blue", "grey", "green", "brown"]
+    for x in range(0, 30):
+        drawColouredEye(win, win.getMouse(), 30, colours[colour_int])
+        colour_int += 1
+        if colour_int == 4:
+            colour_int = 0
 
     win.getMouse()
 
 
-eyesAllAround()
+def archeryGame():
+    score = 0
+    win = GraphWin("Window")
+    drawCircle(win, Point(100, 100), 60, "blue")
+    drawCircle(win, Point(100, 100), 30, "red")
+    drawCircle(win, Point(100, 100), 15, "yellow")
+    score_text = Text(Point(100, 10), "").draw(win)
+
+    for x in range(5):
+        point = win.getMouse()
+
+        drawCircle(win, Point(point.getX() + random.randint(-5, 5),
+                              point.getY() + random.randint(-5, 5)), 5, "black")
+        distance_score = distanceBetweenPoints(point, Point(100, 100))
+        if distance_score <= 60 and distance_score >= 30:
+            score += 2
+            score_text.setText("You scored 2 points")
+        elif distance_score <= 30 and distance_score >= 15:
+            score += 5
+            score_text.setText("You scored 5 points")
+        elif distance_score <= 15:
+            score += 10
+            score_text.setText("You scored 10 points")
+        else:
+            score_text.setText("You missed!")
+    score_text.setText("Your total score is " + str(score) + " points")
+    win.getMouse()
+
+
+archeryGame()
