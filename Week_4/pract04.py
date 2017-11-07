@@ -107,7 +107,7 @@ def rainfallInInches():
     with open('Week_4\\rainfall.txt') as file:
         for line in file:
             size_inches = int(line.split()[1]) / 25.4
-            newfile.write("{0} {1:.2f} \n".format(
+            newfile.write("{0} {1:.2f} \n". (
                 line.split()[0], size_inches))
 
     newfile.close()
