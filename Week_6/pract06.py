@@ -185,4 +185,4 @@ def archeryGame():
     win.getMouse()
 
 
-archeryGame()
+drawPatchWork()

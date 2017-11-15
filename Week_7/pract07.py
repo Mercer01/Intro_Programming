@@ -229,4 +229,4 @@ def clickableBoxOfEyes(row, column):
     win.getMouse()
 
 
-clickableBoxOfEyes(5, 2)
+clickableBoxOfEyes(2, 4)

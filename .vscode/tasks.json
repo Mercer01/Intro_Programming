@@ -8,7 +8,7 @@
             "kind": "build",
             "isDefault": true
         },
-        "command": "python3",
+        "command": "${config:python.pythonPath}", 
         "type": "shell",
         "args": [
             "${file}"
