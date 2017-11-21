@@ -41,54 +41,73 @@ def draw_pacman(win, x, y, colour, flip):
 
 
 def penultimate(win, pos_x, pos_y, colour):
-    for y in range(pos_x, pos_x + 100, 20):
-        for x in range(pos_y, pos_y + 100, 20):
-            if int((x / 20)) % 2 == 0:
-                if int((y / 20)) % 2 == 0:
-                    draw_pacman(win, y, x, colour, True)
+    for y in range(pos_y, pos_y + 100, 20):
+        swap = True
+        for x in range(pos_x, pos_x + 100, 20):
+            if swap:
+                if int(y / 20) % 2 == 0:
+                    draw_pacman(win, y + 1, x, colour, True)
                 else:
-                    draw_square(win, y, x, colour)
+                    draw_square(win, y - 1, x, colour)
+                swap = False
             else:
-                if int((y / 20)) % 2 == 0:
-                    draw_square(win, y, x, colour)
-                else:
-                    draw_pacman(win, y, x, colour, False)
+                if int(y / 20) % 2 == 0:
+                    draw_square(win, y - 1, x, colour)
+                else:  # added +2 to make it look nicer
+                    draw_pacman(win, y - 2, x, colour, False)
+                swap = True
 
 
 def draw_patterns(win, count, colourslist):
-    colour_index = 0
+    col_index = 0
     for y in range(0, count):
         for x in range(0, count):
             if x % 2 == 0:
-                penultimate(win, x * 100, y * 100, colourslist[colour_index])
+                penultimate(win, y * 100, x * 100, colourslist[col_index])
             else:
-                final_patchwork(win, x * 100, y * 100,
-                                colourslist[colour_index])
-            colour_index += 1
-            if colour_index == 3:
-                colour_index = 0
+                final_patchwork(win, x * 100, y * 100, colourslist[col_index])
+            col_index += 1
+            if col_index == 3:
+                col_index = 0
 
 
 def getInputs():
     colours_array = []
     size_col = 0  # setup for colours inputs
-
+    valid_colours = ["red", "green", "blue",
+                     "magenta", "cyan", "orange", "brown", "pink"]
     while True:  # Loops until done
         size = input("Please enter the size of the patchwork:")
-        if size.isnumeric():  # checks if input is a number
-            size = int(size)  # converts value to integer before returning
-            break
-        print("Invalid input")
+        # checks if input is a number
+        if size.isnumeric():
+            if int(size) % 2 == 1:
+                if size in ["5", "7", "9", "11"]:
+                    size = int(size)
+                    break
+                else:
+                    print("Your Input is not one of the valid options 5, 7, 9, 11")
+            else:
+                print("Your Input is an even number this is invalid")
+        else:
+            print("Your Input is not a  number")
 
     while True:
         colour = input("Please enter the {0} colour: ".format(size_col + 1))
         if hasNumbers(colour):  # checks fir digit in input
             print("Your colour contains number. Invalid Input")
+
         else:
-            if colour not in colours_array:  # checks if colour is already added
-                colours_array.append(colour)
+            if colour in valid_colours:
+                if colour not in colours_array:  # checks if colour is already added
+                    if len(colour) >= 2:
+                        colours_array.append(colour)
+                    else:
+                        print("The length of the colour is less than 2 characters.")
+                else:
+                    print("You cannot enter the same colour more than once")
             else:
-                print("You cannot enter the same colour more than once")
+                print("Your colour is not avaliable please try a different one. The valid colours are {0}".format(
+                    valid_colours))
         # does size of the colours array for breaking purposes
         size_col = len(colours_array)
         if size_col >= 3:  # checks if enough colours have been entered
