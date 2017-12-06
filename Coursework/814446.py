@@ -95,14 +95,10 @@ def getInputs():
         colour = input("Please enter the {0} colour: ".format(size_col + 1))
         if hasNumbers(colour):  # checks fir digit in input
             print("Your colour contains number. Invalid Input")
-
         else:
             if colour in valid_colours:
                 if colour not in colours_array:  # checks if colour is already added
-                    if len(colour) >= 2:
-                        colours_array.append(colour)
-                    else:
-                        print("The length of the colour is less than 2 characters.")
+                    colours_array.append(colour)
                 else:
                     print("You cannot enter the same colour more than once")
             else:
@@ -113,7 +109,7 @@ def getInputs():
         if size_col >= 3:  # checks if enough colours have been entered
             break
 
-    return size, colours_array
+    return size,
 
 
 def hasNumbers(inputString):
