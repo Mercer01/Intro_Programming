@@ -109,7 +109,7 @@ def getInputs():
         if size_col >= 3:  # checks if enough colours have been entered
             break
 
-    return size,
+    return size, colours_array
 
 
 def hasNumbers(inputString):
